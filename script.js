@@ -6,7 +6,7 @@ const API_KEY = "0bb48dc833ee4bd38a678403a769770a";
 
 let games = [];
 
-// 🎮 Fetch Games
+
 async function fetchGames(query = "gta") {
     loading.style.display = "block";
     container.innerHTML = "";
@@ -33,7 +33,7 @@ function displayGames(gamesArray) {
     container.innerHTML = "";
 
     if (gamesArray.length === 0) {
-        container.innerHTML = "No games found 😢";
+        container.innerHTML = "No games found";
         return;
     }
 
@@ -45,7 +45,7 @@ function displayGames(gamesArray) {
       <img src="${game.background_image || "https://via.placeholder.com/300"}" />
       <h3>${game.name}</h3>
       <p>⭐ Rating: ${game.rating}</p>
-      <p>📅 Released: ${game.released || "N/A"}</p>
+      <p> Released: ${game.released || "N/A"}</p>
       <button onclick="addToFavorites(${game.id})">❤️ Favorite</button>
     `;
 
@@ -53,7 +53,6 @@ function displayGames(gamesArray) {
     });
 }
 
-// 🔍 Debounced Search
 let timeout;
 searchInput.addEventListener("input", () => {
     clearTimeout(timeout);
@@ -63,13 +62,12 @@ searchInput.addEventListener("input", () => {
     }, 500);
 });
 
-// 🔼 Sort by Rating
 function sortByRating() {
     const sorted = [...games].sort((a, b) => b.rating - a.rating);
     displayGames(sorted);
 }
 
-// 🔽 Sort by Release Date
+
 function sortByDate() {
     const sorted = [...games].sort(
         (a, b) => new Date(b.released) - new Date(a.released)
@@ -77,7 +75,6 @@ function sortByDate() {
     displayGames(sorted);
 }
 
-// ❤️ Favorites (Local Storage)
 function addToFavorites(id) {
     const selectedGame = games.find(game => game.id === id);
 
@@ -94,5 +91,5 @@ function addToFavorites(id) {
     }
 }
 
-// 🚀 Initial Load
+
 fetchGames();
