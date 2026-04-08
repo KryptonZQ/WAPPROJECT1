@@ -1,10 +1,33 @@
 const container = document.getElementById("container");
 const loading = document.getElementById("loading");
 const searchInput = document.getElementById("search");
+const themeToggleBtn = document.getElementById("themeToggle");
 
 const API_KEY = "0bb48dc833ee4bd38a678403a769770a";
 
 let games = [];
+
+function applyTheme(theme) {
+    const isLight = theme === "light";
+    document.body.classList.toggle("light", isLight);
+
+    if (themeToggleBtn) {
+        themeToggleBtn.textContent = isLight ? "🌙 Dark Mode" : "☀️ Light Mode";
+    }
+}
+
+function initializeTheme() {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    applyTheme(savedTheme);
+}
+
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+        const nextTheme = document.body.classList.contains("light") ? "dark" : "light";
+        localStorage.setItem("theme", nextTheme);
+        applyTheme(nextTheme);
+    });
+}
 
 
 async function fetchGames(query = "gta") {
@@ -93,3 +116,4 @@ function addToFavorites(id) {
 
 
 fetchGames();
+initializeTheme();

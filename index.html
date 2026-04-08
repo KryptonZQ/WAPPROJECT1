@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Retro Game Vault 🎮</title>
     <link rel="stylesheet" href="style.css">
-    
+
 </head>
 
 <body>
@@ -14,9 +14,27 @@
 
     <div class="controls">
         <input id="search" placeholder="Search games..." />
-        <button onclick="sortByRating()">Sort by Rating</button>
-        <button onclick="sortByDate()">Sort by Date</button>
+        <select id="genreFilter" aria-label="Filter by genre">
+            <option value="all">All Genres</option>
+        </select>
+        <select id="ratingFilter" aria-label="Filter by minimum rating">
+            <option value="0">Any Rating</option>
+            <option value="3">Rating 3+</option>
+            <option value="4">Rating 4+</option>
+            <option value="4.5">Rating 4.5+</option>
+        </select>
+        <select id="sortSelect" aria-label="Sort games">
+            <option value="rating-desc">Rating (High to Low)</option>
+            <option value="rating-asc">Rating (Low to High)</option>
+            <option value="date-desc">Newest Release</option>
+            <option value="date-asc">Oldest Release</option>
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+        </select>
+        <button id="themeToggle" type="button">☀️ Light Mode</button>
     </div>
+
+    <p id="resultsInfo"></p>
 
     <div id="loading" style="display:none;">Loading...</div>
 

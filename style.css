@@ -1,59 +1,94 @@
+:root {
+    --bg-main: radial-gradient(circle at top, #020617, #000000 80%);
+    --surface: rgba(2, 6, 23, 0.9);
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --title: #ffffff;
+    --accent: #00f0ff;
+    --accent-alt: #ff00ff;
+    --input-bg: #020617;
+    --card-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+body.light {
+    --bg-main: radial-gradient(circle at top, #f8fafc, #e2e8f0 80%);
+    --surface: rgba(255, 255, 255, 0.95);
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --title: #0f172a;
+    --accent: #0ea5e9;
+    --accent-alt: #ec4899;
+    --input-bg: #ffffff;
+    --card-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+}
+
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #020617, #000000 80%);
-    color: #e2e8f0;
+    background: var(--bg-main);
+    color: var(--text-main);
     text-align: center;
 }
 
 h1 {
     margin: 20px;
     font-size: 2.5rem;
-    color: #ffffff;
+    color: var(--title);
     letter-spacing: 2px;
 }
 
 .controls {
     margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
-input {
+input,
+select {
     padding: 12px;
     width: 260px;
     border-radius: 10px;
     border: none;
     outline: none;
-    background: #020617;
-    color: white;
-    box-shadow: 0 0 10px #00f0ff;
+    background: var(--input-bg);
+    color: var(--text-main);
+    box-shadow: 0 0 10px var(--accent);
 }
 
 input::placeholder {
-    color: #94a3b8;
+    color: var(--text-muted);
 }
 
 button {
     padding: 12px 16px;
     border-radius: 10px;
     border: none;
-    background: #020617;
-    color: #00f0ff;
+    background: var(--input-bg);
+    color: var(--accent);
     cursor: pointer;
     margin: 5px;
     font-weight: bold;
-    box-shadow: 0 0 10px #00f0ff;
+    box-shadow: 0 0 10px var(--accent);
     transition: 0.3s;
 }
 
 button:hover {
-    color: #ff00ff;
-    box-shadow: 0 0 15px #ff00ff, 0 0 25px #00f0ff;
+    color: var(--accent-alt);
+    box-shadow: 0 0 15px var(--accent-alt), 0 0 25px var(--accent);
     transform: scale(1.05);
 }
 
 #loading {
     font-size: 18px;
-    color: #00f0ff;
+    color: var(--accent);
+}
+
+#resultsInfo {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
 #container {
@@ -64,20 +99,20 @@ button:hover {
 }
 
 .card {
-    background: rgba(2, 6, 23, 0.9);
+    background: var(--surface);
     border-radius: 15px;
     overflow: hidden;
     text-align: left;
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    box-shadow: var(--card-shadow);
     transition: 0.3s;
 }
 
 .card:hover {
     transform: translateY(-8px) scale(1.03);
     box-shadow:
-        0 0 20px #00f0ff,
-        0 0 30px #ff00ff;
+        0 0 20px var(--accent),
+        0 0 30px var(--accent-alt);
 }
 
 .card img {
@@ -89,24 +124,45 @@ button:hover {
 .card h3 {
     margin: 10px;
     font-size: 18px;
-    color: #ffffff;
+    color: var(--title);
 }
 
 .card p {
     margin: 5px 10px;
     font-size: 14px;
-    color: #94a3b8;
+    color: var(--text-muted);
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    padding: 0 10px 10px;
 }
 
 .card button {
-    margin: 10px;
-    width: calc(100% - 20px);
-    background: #020617;
-    color: #00f0ff;
-    box-shadow: 0 0 10px #00f0ff;
+    margin: 0;
+    flex: 1;
+    width: auto;
+    background: var(--input-bg);
+    color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
 }
 
 .card button:hover {
-    color: #ff00ff;
-    box-shadow: 0 0 20px #ff00ff;
+    color: var(--accent-alt);
+    box-shadow: 0 0 20px var(--accent-alt);
+}
+
+.fav-active {
+    color: #f43f5e !important;
+    box-shadow: 0 0 14px #f43f5e !important;
+}
+
+@media (max-width: 768px) {
+
+    input,
+    select {
+        width: 100%;
+        max-width: 340px;
+    }
 }
